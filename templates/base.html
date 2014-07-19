@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %} 
+	{% get_static_prefix as STATIC_PREFIX %}
+    <meta charset="UTF-8" />
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="夏赟丞_XycZero">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/code.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+	
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
+
+	
+</head>
+
+<body class="body">
+ {% block body %}
+ 
+        {% block header %}
+            {% block menu %}{% endblock %}
+        {% endblock %}
+        
+        <p id="back-to-top"><a href="#top"><span><img src="{{STATIC_PREFIX}}img_sys/return_top.png"></span>返回顶部</a></p>
+        
+        <div id="content" class="inner">
+            {% block content %}
+    			<div id="main-col" class="alignleft">
+    				<div id="wrapper">
+                        {% block article %}{% endblock %}
+                        {% block comments %}{% endblock %}
+                        
+                    </div>
+           		</div>
+           		<aside id="sidebar" class="alignleft">
+ 					{% block aside %}
+ 					 	{% block newest %}{% endblock %}
+                     	{% block tags %}{% endblock %}
+                     	{% block archive %}{% endblock %}
+                     	{% block friends_link %}{% endblock %}
+                     	{% block weibo_link %}{% endblock %}
+                	{% endblock %}
+		  		</aside>
+ 			{% endblock %}
+ 			<div class="clearfix"></div>
+       </div> 
+ {% endblock %}
+ 
+ {% block footer %}
+        {# 任何每个页面都可能修改的文本区域的页脚 #}
+		<footer id="footer" class="inner" style="background-color: #ccc">
+			<div class="container-footer">
+				<p class="muted credit">Copy right © 2014  夏赟丞  | Power by <a href="#">pcms</a> | 苏ICP备14029567号</p>
+			</div>
+		</footer>
+{% endblock %}
+
+<script>
+	$(function(){
+		
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function () {
+            $(window).scroll(function(){
+                if ($(window).scrollTop()>100){
+                    $("#back-to-top").fadeIn(1200);
+                }
+                else
+                {
+                    $("#back-to-top").fadeOut(1200);
+                }
+            });
+            //当点击跳转链接后，回到页面顶部位置
+            $("#back-to-top").click(function(){
+                $('body,html').animate({scrollTop:0},1000);
+                return false;
+            });
+        });
+    });
+</script>
+
+</body>
+
+</html>

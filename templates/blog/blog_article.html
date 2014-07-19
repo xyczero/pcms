@@ -1,0 +1,58 @@
+{% extends "blog/blog_base.html" %}
+
+{% block title %} {{ blog.title}} | XycZero's Blog  {% endblock %}
+
+{% block article %}
+		<article class="post">
+			<aside class="entry-meta">
+				<time datetime="2014-06-30T06:59:31.480Z" class="post-date">
+					<span class="post-month">{{blog.create_time.month}}月</span>
+					<strong class="post-day">{{blog.create_time.day}}</strong>
+					<span class="post-year">{{blog.create_time.year}}</span>
+				</time>
+			</aside>
+    		<div class="post-content">
+    			<header>
+      				<h1 class="title"><a href="{% url 'blog:article' %}?blog={{blog.id}}">{{ blog.title }}</a></h1>
+      				<div class="entry-info">
+      					   分类：
+      						 {% if blog.category %}
+      						 	<a href="{% url 'blog:index' %}?category={{blog.category.id}}" title="查看包含{{blog.category.name}}的全部文章" rel="tag">&nbsp{{blog.category.name}}</a>
+      						 {% endif %}
+      					| 标签:
+      						 {% for tag in blog.tags.all %}
+      							<a href="{% url 'blog:index' %}?tag={{tag.id}}" title="查看包含{{tag.name}}的全部文章" rel="tag">&nbsp{{tag.name}}</a>
+      						 {% endfor %}
+      					| 作者：兜兜夏 
+      					<br>更新于：{{blog.update_time|date:"Y-m-d h:m"}}
+					</div>
+				</header>
+				{% if not is_tag and not is_category %}
+        			<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html}}{% endautoescape %}</span></div>
+    			{% else %}
+    				<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html|truncatechars:500}}{% endautoescape %}</span></div>
+    			{% endif %}
+    		</div>   
+		</article>
+{% endblock %}
+
+ {% block comments %}
+ 	<div id="comments">
+ 		<!-- 多说评论框 start -->
+		<div class="ds-thread" data-thread-key="{% url 'blog:article' %}?blog={{blog.id}}" data-title="{{ blog.title }}" data-url="http://10.167.218.54:8080{% url 'blog:article' %}?blog={{blog.id}}"></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+		var duoshuoQuery = {short_name:"xyczero"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+		 	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+	<!-- 多说公共JS代码 end -->	
+ 	</div>
+ {% endblock %}

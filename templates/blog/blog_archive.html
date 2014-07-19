@@ -1,0 +1,54 @@
+{% extends "blog/blog_base.html" %}
+
+{% block title %}
+	 Archive | XycZero's Blog 
+{% endblock %}
+
+{% block article %}
+	
+		<div class="archive">
+		<h1 class="archive-title">{{published_year}}年{{published_month}}月归档</h1>
+		{% for blog in blogs %}
+				<article class="post">
+    				<header>
+    					<div class="post-time">
+      						<time class="day">{{ blog.create_time|date:"d" }}日</time>
+      						<time class="hour">{{ blog.create_time|date:"h:m" }}</time>
+      					</div>	
+      					<div class="post-content">
+      						<h2 class="title"><a href="{% url 'blog:article' %}?blog={{blog.id}}">{{ blog.title }}</a></h2>
+      						<div class="entry-info">
+      						      分类：
+      						      {% if blog.category %}
+      							  	<a href="{% url 'blog:index' %}?category={{blog.category.id}}" title="查看包含{{blog.category.name}}的全部文章" rel="tag">&nbsp{{blog.category.name}}</a>
+      							  {% endif %}
+      						| 标签:
+      							  {% for tag in blog.tags.all %}
+      							  	<a href="{% url 'blog:index' %}?tag={{tag.id}}" title="查看包含{{tag.name}}的全部文章" rel="tag">&nbsp{{tag.name}}</a>
+      							  {% endfor %}
+      						| 作者：兜兜夏
+							</div>
+						</div>
+					</header>
+				</article>
+		{% endfor %}
+		</div>
+	
+	<script type="text/javascript">
+		$(function() {
+			$(".year").each(function(){
+				var num;
+				$(this).children("ul").each(function(){
+					$(this).children(".archive").each(function(){
+						num=$(this).children(".post").size();
+					});
+				});
+				$(this).children("h1").each(function(){
+					$(this).append("<small>"+'&nbsp('+num+')'+"</small>");
+				});
+			});
+		});
+	</script>
+	
+{% endblock %}
+

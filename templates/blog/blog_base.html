@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block extra_head %}	
+    {% block showblogscript %}{% endblock %}
+    {% block otherscript %}{% endblock %}
+{% endblock %}
+
+{% block header %}
+    {% block menu %}
+    <header id="header">
+    	<nav id="main-nav" class="navbar navbar-inverse nav-mycustom" role="navigation">
+  			<section class="container-fluid">
+  			<section class="navbar-collapse collapse">
+  				<a href="{% url 'blog:index' %}" class="title" title="小小程序员,爱编程,乐分享,晚起贪黑,努力学习,为理想而奋斗......">XycZero</a>
+      			<ul class="nav navbar-nav alignright">
+      			{% for category in categories %}
+      				<li><a href="{% url 'blog:index' %}?category={{category.id}}">{{category.name}}</a></li>
+				{% endfor %}
+					<li><a href="/about">关于</a></li>
+				</ul>
+				<!-- <ul class="nav navbar-nav navbar-right navbar-mycustom">
+				<li><a href="/about">关于</a></li>
+				<li><a href="/message_board">留言板</a></li>
+  				</ul> -->
+  				</section>
+ 			</section>
+		</nav>
+		<div class="clearfix"></div>
+	</header>
+    {% endblock %}
+{% endblock %}
+
+{% block aside %}
+	<div class="search">
+  		<form action="//google.com/search" method="get" accept-charset="utf-8">
+    		<input type="search" name="q" results="0" placeholder="搜索">
+    		<input type="hidden" name="q" value="site:blog.acgtyrant.com">
+		</form>
+	</div>
+	
+	{% block newest %}
+		<div class="widget tag">
+  		<h3 class="title">最新文章</h3>
+ 		<ul class="entry">
+			{% for blog in new_blogs %}<li><a href="{% url 'blog:article' %}?blog={{blog.id}}">{{blog.title}}</a></li>{% endfor %}
+		</ul>
+	</div>
+	{% endblock %}
+	
+	{% block tags %}
+		<div class="widget tag">
+  			<h3 class="title">标签</h3>
+  			<ul class="entry">
+    			<span class="label label-mycustom"><a href="/blog/?tag=1" title="查看包含代码的全部文章" rel="tag">代码</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">PythonPython</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Pythss</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">PythPyton</a></span>
+    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">Pytho</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">PythoPyn</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python1</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Pon</a></span>
+    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">PyPythonthon</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+			</ul>
+		</div>
+	{% endblock %}
+	
+	{% block archive %}
+		<div class="widget tag">
+  			<h3 class="title">文章归档</h3>
+  			<ul id="archive" class="entry">
+  				<script type="text/javascript">
+                	function expandArchiveYear(year){
+                    	var id = '#archive-year-' + year.toString();
+                    	var div = $(id);
+                    	if(div.attr('data-expanded') == 'true'){
+                        	$(id + '>div').css('display', 'none');
+                        	$(id + '>a.archive-expanded').attr('class', 'archive-collapsed archive-collapsed-a');
+                        	div.attr('data-expanded', 'false');
+                    	}else{
+                        	$(id + '>div').css('display', 'block');
+                        	$(id + '>a.archive-collapsed').attr('class', 'archive-expanded archive-collapsed-a');
+                        	div.attr('data-expanded', 'true');
+                    	}
+                	}
+            	</script>
+  				{% for date in date_archive_list %}
+  					{% for num in date  %}
+  						{% if forloop.first %}
+  							<li id="archive-year-{{num}}" data-expanded="false">
+  							<a class="archive-collapsed archive-collapsed-a" href="javascript:expandArchiveYear({{num}})">{{num}}年</a>
+  						{% else %}
+  							{% ifnotequal '/' num %}
+  								<div style="display: none;">
+                           			 <a class="archive-item archive-collapsed-a" href="{% url 'blog:archive' date.0 num %}">{{num}}月</a>
+                       			</div>
+                       		{% endifnotequal %}
+                       	{% endif %}
+                       	{% if forloop.last %}
+                       		</li>
+                       	{% endif %}	
+  					{% endfor %}
+  				{% endfor %}
+			</ul>
+		</div>
+	{% endblock %}
+	
+	{% block friends_link %}
+		<div class="widget tag">
+  			<h3 class="title">友情链接</h3>
+  			<ul class="entry">
+    			<li><a href="http://www.liangfeizc.com/">飞哥-Zealous Carrier</a></li>
+			</ul>
+		</div>
+	{% endblock %}
+	
+	{% block weibo_link %}
+		<div class="widget tag">
+  			<h3 class="title">我的微博</h3>
+  			<ul class=".entry">
+    			<iframe width="100%" height="450" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=450&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=3176428527&verifier=943cbf46&dpc=1"></iframe>
+    		</ul>
+		</div>
+	{% endblock %}
+	
+{% endblock %}

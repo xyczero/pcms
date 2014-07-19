@@ -1,0 +1,76 @@
+{% extends "blog/blog_base.html" %}
+
+{% block title %}
+	{% if blogs.has_previous %}
+		第 {{blogs.number}} 页 | 
+	{% endif %}
+	{% if is_tag %}
+		{{is_tag.name}} | 
+	{% elif is_category %}
+		{{is_category.name}} | 
+	{% endif %}
+	 XycZero's Blog 
+{% endblock %}
+
+{% block article %}
+	{% for blog in blogs %}
+		<article class="post">
+			<aside class="entry-meta">
+				<!-- <time datetime="2014-06-30T06:59:31.480Z" class="post-date">
+					<span class="post-year">{{blog.create_time.year}} </span>
+					<span class="post-month">{{blog.create_time.month}}月</span>
+					<span class="post-day">{{blog.create_time.day}}	</span>
+				</time> -->
+			</aside>
+    		<div class="post-content">
+    			<header>
+      				<h1 class="title"><a href="{% url 'blog:article' %}?blog={{blog.id}}">{{ blog.title }}</a></h1>
+      				<div class="entry-info">
+      					   分类：
+      						 {% if blog.category %}
+      						 	<a href="{% url 'blog:index' %}?category={{blog.category.id}}" title="查看包含{{blog.category.name}}的全部文章" rel="tag">&nbsp{{blog.category.name}}</a>
+      						 {% endif %}
+      					| 标签:
+      						 {% for tag in blog.tags.all %}
+      							<a href="{% url 'blog:index' %}?tag={{tag.id}}" title="查看包含{{tag.name}}的全部文章" rel="tag">&nbsp{{tag.name}}</a>
+      						 {% endfor %}
+      					| 作者：兜兜夓
+      					<br>更新于：{{blog.update_time|date:"Y-m-d h:m"}}
+					</div>
+				</header>
+				{% if not is_tag and not is_category %}
+        			<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html}}{% endautoescape %}</span></div>
+    			{% else %}
+    				<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html|truncatechars:500}}{% endautoescape %}</span></div>
+    			{% endif %}
+    		</div>   
+		</article>
+	{% endfor %}
+	
+	{% if is_tag or is_category %}
+		<footer><div class="clearfix"></div></footer>
+		<script type="text/javascript">
+			$(function() {
+				$(".entry-mycustom > span").each(function(){
+					var content_length=$(this).html().length;
+					if(content_length>=488){
+						$(this).parent().after("<footer><div class='clearfix'></div></footer>");
+						$(this).parent().after("<div class='entry-readmore'><h5><a href='{% url "blog:article" %}?blog="+$(this).attr('id')+"'> 阅读全文 >></a></h5></div>");
+					}
+				});
+			});
+		</script>
+	{% endif %}
+	
+	<nav id="pagination">
+		{% if blogs.has_previous %}
+		<a href="?page={{blogs.previous_page_number}}" class="alignleft prev">上一页&nbsp&nbsp></a>
+		{% endif %}
+		{% if blogs.has_next %}
+		<a href="?page={{blogs.next_page_number}}" class="alignright next">下一页&nbsp&nbsp></a>
+		{% endif %}
+		<div class="clearfix"></div>
+	</nav>
+	
+{% endblock %}
+
