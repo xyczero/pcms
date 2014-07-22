@@ -10,14 +10,16 @@
     <header id="header">
     	<nav id="main-nav" class="navbar navbar-inverse nav-mycustom" role="navigation">
   			<section class="container-fluid">
-  			<section class="navbar-collapse collapse">
-  				<a href="{% url 'blog:index' %}" class="title" title="小小程序员,爱编程,乐分享,晚起贪黑,努力学习,为理想而奋斗......">XycZero</a>
-      			<ul class="nav navbar-nav alignright">
-      			{% for category in categories %}
-      				<li><a href="{% url 'blog:index' %}?category={{category.id}}">{{category.name}}</a></li>
-				{% endfor %}
-					<li><a href="/about">关于</a></li>
-				</ul>
+  				<section class="navbar-collapse collapse">
+  					<div class="title">	
+  						<a href="{% url 'blog:index' %}"  title="小小程序员,爱编程,乐分享,晚起贪黑,努力学习,为理想而奋斗......">XycZero</a>
+      				</div>	
+      				<ul class="nav navbar-nav alignright">
+      					{% for category in categories %}
+      						<li><a href="{% url 'blog:index' %}?category={{category.id}}">{{category.name}}</a></li>
+						{% endfor %}
+						<li><a href="/about">关于</a></li>
+					</ul>
 				<!-- <ul class="nav navbar-nav navbar-right navbar-mycustom">
 				<li><a href="/about">关于</a></li>
 				<li><a href="/message_board">留言板</a></li>
@@ -134,5 +136,17 @@
     		</ul>
 		</div>
 	{% endblock %}
+<!-- 	<script type="text/javascript">
+		$(function() {
+			$(".navbar-nav li").each(function(){
+				$(this).css("background","#00000000");
+				$(this).click(function(){
+					alert("22");
+					$(this).addClass("selected-category");
+				});
+				$(".selected-category").css("background","#080808");
+			}); 
+		});
+	</script> -->
 	
 {% endblock %}
