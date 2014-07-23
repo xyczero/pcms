@@ -207,13 +207,13 @@ a:hover {
 
 #header #main-nav ul {
 	list-style: none;
-	margin-left: 15%;
+/*	margin-left: 15%;*/
 	margin-right: 33.5%;
 }
 
 @media screen and (max-width: 1366px) {
 	#header #main-nav ul {
-		margin-left: 3%;
+/*		margin-left: 3%;*/
 		margin-right: 30.5%;
 	}
 }
