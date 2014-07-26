@@ -117,7 +117,7 @@ a:hover {
 #wrapper .entry-meta {
 	color: #999;
 	float: left;
-	margin: 14px 3px 0 4px;
+	margin: 14px 0px 0 4px;
 	text-align: center;
 	width: 75px;
 	font-size: 8px;
@@ -378,7 +378,8 @@ article header .icon:before {
 article header .entry-info {
 	border-bottom: 1px dotted #999;
 	color: #999;
-	margin-left: 10px;
+	margin-left: 3px;
+	margin-top: 5px;
 	padding: 0px 15px 10px 0px;
 	font-size: 12px;
 }
@@ -413,6 +414,7 @@ article .entry {
 article .entry-mycustom {
 	text-align: justify;
 	line-height: 1.6;
+	margin-top: 7px;
 }
 
 article .entry-readmore{
@@ -908,7 +910,7 @@ article footer .addthis iframe {
 #footer .container-footer{
 	background: #101010;
 	padding:17px 0 14px 0;
-	text-align: left;
+	text-align: center;
 }
 
 #footer .container-footer a{

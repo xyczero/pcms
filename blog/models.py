@@ -52,7 +52,8 @@ class Blog(models.Model):
     
     def save(self):
         self.create_or_update_release()
-        self.content_html = markdown(self.content, ['codehilite'])
+        if not self.content_html: 
+            self.content_html = markdown(self.content, ['codehilite'])
         super(Blog, self).save()
         for tag in self.tags.all():
             p, created = Tag.objects.get_or_create(name=tag.name, create_time=tag.create_time)
