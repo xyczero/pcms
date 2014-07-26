@@ -24,43 +24,31 @@
 			</aside>
     		<div class="post-content">
     			<header>
-      				<h1 class="title"><a href="{% url 'blog:article' %}?blog={{blog.id}}">{{ blog.title }}</a></h1>
+      				<h1 class="title"><a href="{% url 'blog:article' blog.id %}">{{ blog.title }}</a></h1>
       				<div class="entry-info">
       					   分类：
       						 {% if blog.category %}
-      						 	<a href="{% url 'blog:index' %}?category={{blog.category.id}}" title="查看包含{{blog.category.name}}的全部文章" rel="tag">&nbsp{{blog.category.name}}</a>
+      						 	<a href="{% url 'blog:category' blog.category.name %}" title="查看包含{{blog.category.name}}的全部文章" >&nbsp{{blog.category.name}}</a>
       						 {% endif %}
       					| 标签:
       						 {% for tag in blog.tags.all %}
-      							<a href="{% url 'blog:index' %}?tag={{tag.id}}" title="查看包含{{tag.name}}的全部文章" rel="tag">&nbsp{{tag.name}}</a>
+      							<a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag" >&nbsp{{tag.name}}</a>
       						 {% endfor %}
       					| 作者：兜兜夓
       					<br>更新于：{{blog.update_time|date:"Y-m-d h:m"}}
 					</div>
 				</header>
-				{% if not is_tag and not is_category %}
-        			<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html}}{% endautoescape %}</span></div>
+				{% if is_ct %}
+        			<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html|truncatechars:500}}{% endautoescape %}</span></div>
+        			<div class="entry-readmore"><h5><a href="{% url 'blog:article' blog.id %}"> 阅读全文 >></a></h5></div>
     			{% else %}
-    				<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html|truncatechars:500}}{% endautoescape %}</span></div>
+    				<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html}}{% endautoescape %}</span></div>
     			{% endif %}
+    			
+    			<footer><div class='clearfix'></div></footer>
     		</div>   
 		</article>
 	{% endfor %}
-	
-	{% if is_tag or is_category %}
-		<footer><div class="clearfix"></div></footer>
-		<script type="text/javascript">
-			$(function() {
-				$(".entry-mycustom > span").each(function(){
-					var content_length=$(this).html().length;
-					if(content_length>=488){
-						$(this).parent().after("<footer><div class='clearfix'></div></footer>");
-						$(this).parent().after("<div class='entry-readmore'><h5><a href='{% url "blog:article" %}?blog="+$(this).attr('id')+"'> 阅读全文 >></a></h5></div>");
-					}
-				});
-			});
-		</script>
-	{% endif %}
 	
 	<nav id="pagination">
 		{% if blogs.has_previous %}

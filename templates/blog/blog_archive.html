@@ -16,15 +16,15 @@
       						<time class="hour">{{ blog.create_time|date:"h:m" }}</time>
       					</div>	
       					<div class="post-content">
-      						<h2 class="title"><a href="{% url 'blog:article' %}?blog={{blog.id}}">{{ blog.title }}</a></h2>
+      						<h2 class="title"><a href="{% url 'blog:article' blog.id %}">{{ blog.title }}</a></h2>
       						<div class="entry-info">
       						      分类：
       						      {% if blog.category %}
-      							  	<a href="{% url 'blog:index' %}?category={{blog.category.id}}" title="查看包含{{blog.category.name}}的全部文章" rel="tag">&nbsp{{blog.category.name}}</a>
+      							  	<a href="{% url 'blog:category' blog.category.name %}" title="查看包含{{blog.category.name}}的全部文章" >&nbsp{{blog.category.name}}</a>
       							  {% endif %}
       						| 标签:
       							  {% for tag in blog.tags.all %}
-      							  	<a href="{% url 'blog:index' %}?tag={{tag.id}}" title="查看包含{{tag.name}}的全部文章" rel="tag">&nbsp{{tag.name}}</a>
+      							  	<a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag" >&nbsp{{tag.name}}</a>
       							  {% endfor %}
       						| 作者：兜兜夏
 							</div>

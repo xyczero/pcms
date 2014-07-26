@@ -16,9 +16,9 @@
       				</div>	
       				<ul class="nav navbar-nav alignright">
       					{% for category in categories %}
-      						<li><a href="{% url 'blog:index' %}?category={{category.id}}">{{category.name}}</a></li>
+      						<li><a href="{% url 'blog:category' category.name %}" title="查看包含{{category.name}}的全部文章" >{{category.name}}</a></li>
 						{% endfor %}
-						<li><a href="/about">关于</a></li>
+						<li><a href="{% url 'blog:about' %}">关于</a></li>
 					</ul>
 				<!-- <ul class="nav navbar-nav navbar-right navbar-mycustom">
 				<li><a href="/about">关于</a></li>
@@ -44,7 +44,9 @@
 		<div class="widget tag">
   		<h3 class="title">最新文章</h3>
  		<ul class="entry">
-			{% for blog in new_blogs %}<li><a href="{% url 'blog:article' %}?blog={{blog.id}}">{{blog.title}}</a></li>{% endfor %}
+			{% for blog in new_blogs %}
+				<li><a href="{% url 'blog:article' blog.id %}">{{blog.title}}</a></li>
+			{% endfor %}
 		</ul>
 	</div>
 	{% endblock %}
@@ -53,28 +55,9 @@
 		<div class="widget tag">
   			<h3 class="title">标签</h3>
   			<ul class="entry">
-    			<span class="label label-mycustom"><a href="/blog/?tag=1" title="查看包含代码的全部文章" rel="tag">代码</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">PythonPython</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Pythss</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">PythPyton</a></span>
-    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">Pytho</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">PythoPyn</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python1</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Pon</a></span>
-    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">PyPythonthon</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom1"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
-    			<span class="label label-mycustom"><a href="{% url 'blog:index' %}?tag=1">Python</a></span>
+  				{% for tag in tages %}
+    				<span class="label label-mycustom"><a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag">代码</a></span>
+				{% endfor %}
 			</ul>
 		</div>
 	{% endblock %}
