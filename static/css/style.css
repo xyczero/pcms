@@ -205,12 +205,14 @@ a:hover {
 #header section .title {
 	float:left;
 	margin-left:17%;
+	font-family:"FontAwesome";
+	font-weight:bold;
 	font-style: italic;
 	text-align:center;
-	font-size:2.5em;
+	font-size:3em;
 /* 	font-size: 40px; */
 	line-height: 1;
-	margin-top:7px;
+	margin-top:4px;
 	
 }
 
@@ -443,8 +445,26 @@ article .entry-mycustom {
 	margin-top: 7px;
 }
 
-article .entry-readmore{
+article .entry-readmore {
 	margin-top:17px;
+	margin-right:85%;
+}
+
+article .entry-readmore a{
+	display: block;
+	color: #999;
+	background:#ddd ;
+	padding:4px 0px 5px 0px;
+	text-align: center;
+	text-shadow: 0 0 1px #fff;
+	font-size:14px;
+}
+
+article .entry-readmore a:hover {
+	color: #f8f8f8;
+	background: #258fb8;
+	text-decoration: none;
+	text-shadow: none;
 }
 
 article .entry p,article .entry blockquote,article .entry ul,article .entry ol,article .entry dl,article .entry table,article .entry iframe,article .entry h3,article .entry h4,article .entry h5,article .entry h6,article .entry .video-container

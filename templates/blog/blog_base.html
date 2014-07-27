@@ -55,8 +55,8 @@
 		<div class="widget tag">
   			<h3 class="title">标签</h3>
   			<ul class="entry">
-  				{% for tag in tages %}
-    				<span class="label label-mycustom"><a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag">代码</a></span>
+  				{% for tag in tags %}
+    				<span class="label label-mycustom"><a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag" clicks="{{tag.clicks}}">{{tag.name}}</a></span>
 				{% endfor %}
 			</ul>
 		</div>
@@ -119,17 +119,16 @@
     		</ul>
 		</div>
 	{% endblock %}
-<!-- 	<script type="text/javascript">
+	
+	<script type="text/javascript">
 		$(function() {
-			$(".navbar-nav li").each(function(){
-				$(this).css("background","#00000000");
-				$(this).click(function(){
-					alert("22");
-					$(this).addClass("selected-category");
-				});
-				$(".selected-category").css("background","#080808");
+			$(".widget a").each(function(){
+				if($(this).attr("rel")=="tag"){
+					var size=parseFloat($(this).css("font-size"))+$(this).attr("clicks")/100;
+					$(this).css("font-size",size+$(this).css("font-size").slice(-2));
+				}
 			}); 
 		});
-	</script> -->
+	</script>
 	
 {% endblock %}

@@ -1,6 +1,5 @@
 # -*-coding:utf-8 -*-
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, \
-    InvalidPage
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 
 from blog.models import Blog, Tag, Category
@@ -13,21 +12,37 @@ def index(request, ct_name):
         is_ct = False
         blog_list = Blog.objects.filter(is_release=True).order_by('-create_time')
     else:
-        page_num = 1000
+        page_num = 5
         is_ct = True;
         blog_list = Blog.objects.filter(category__name=ct_name, is_release=True).order_by('-create_time')
         if not blog_list:
+            tag=Tag.objects.filter(name=ct_name)
+            if tag :
+                tag.clicks=int(tag.clicks)+1
+                tag.save()
             blog_list = Blog.objects.filter(tags__name=ct_name, is_release=True).order_by('-create_time')
             
     blogs = blog_paginator(request, blog_list, page_num)    
     categories, new_blogs, date_archive_list = get_aside_init()
-    return render(request, 'blog/blog_list.html', {'blogs':blogs, 'new_blogs':new_blogs, 'categories':categories, 'tags':Tag.objects.all(), 'date_archive_list':date_archive_list, 'is_ct':is_ct, }) 
+    return render(request, 'blog/blog_list.html', 
+                  {'blogs':blogs, 
+                   'new_blogs':new_blogs,
+                   'categories':categories, 
+                   'tags':Tag.objects.all(), 
+                   'date_archive_list':date_archive_list, 
+                   'is_ct':is_ct, 
+                   }) 
 
 def article(request, article_id):
     blog = Blog.objects.get(id=int(article_id), is_release=True)
         
     categories, new_blogs, date_archive_list = get_aside_init()
-    return render(request, 'blog/blog_article.html', {'blog':blog, 'new_blogs':new_blogs, 'categories':categories, 'tags':Tag.objects.all(), 'date_archive_list':date_archive_list, })
+    return render(request, 'blog/blog_article.html', {'blog':blog, 
+                                                      'new_blogs':new_blogs, 
+                                                      'categories':categories, 
+                                                      'tags':Tag.objects.all(), 
+                                                      'date_archive_list':date_archive_list, 
+                                                      })
 
 
 def archive(request, published_year, published_month):
@@ -37,11 +52,22 @@ def archive(request, published_year, published_month):
         if  str(blog.create_time.year) == published_year and  str(blog.create_time.month) == published_month and blog.is_release == True:
             blogs.append(blog)
     categories, new_blogs, date_archive_list = get_aside_init()
-    return render(request, 'blog/blog_archive.html', {'blogs':blogs, 'new_blogs':new_blogs, 'categories':categories, 'tags':Tag.objects.all(), 'date_archive_list':date_archive_list, 'published_year':published_year, 'published_month':published_month, })
+    return render(request, 'blog/blog_archive.html', {'blogs':blogs, 
+                                                      'new_blogs':new_blogs, 
+                                                      'categories':categories, 
+                                                      'tags':Tag.objects.all(), 
+                                                      'date_archive_list':date_archive_list, 
+                                                      'published_year':published_year, 
+                                                      'published_month':published_month, 
+                                                      })
 
 def about(request):
     categories, new_blogs, date_archive_list = get_aside_init()
-    return render(request, 'blog/about.html', {'new_blogs':new_blogs, 'categories':categories, 'tags':Tag.objects.all(), 'date_archive_list':date_archive_list, })
+    return render(request, 'blog/about.html', {'new_blogs':new_blogs, 
+                                               'categories':categories, 
+                                               'tags':Tag.objects.all(), 
+                                               'date_archive_list':date_archive_list, 
+                                               })
 
 def blog_paginator(request, blog_list, page_num):
     paginator = Paginator(blog_list, page_num)

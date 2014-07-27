@@ -12,6 +12,7 @@ from wmd import models as wmd_models
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=30)
+    clicks = models.IntegerField(default=0)
     create_time = models.DateTimeField(auto_now_add=True)
     
     def __unicode__(self):
@@ -43,6 +44,7 @@ class Blog(models.Model):
     content_html = models.TextField(blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now_add=True)
+    is_html = models.BooleanField('Use content_html directly?', default=False)
     is_release = models.BooleanField('Release right now?', default=False)
     
     objects = models.Manager()
@@ -52,7 +54,7 @@ class Blog(models.Model):
     
     def save(self):
         self.create_or_update_release()
-        if not self.content_html: 
+        if not self.is_html: 
             self.content_html = markdown(self.content, ['codehilite'])
         super(Blog, self).save()
         for tag in self.tags.all():

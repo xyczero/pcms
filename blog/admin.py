@@ -10,7 +10,7 @@ class BlogAdmin(admin.ModelAdmin):
               ('Release', {'fields':['is_release']}),
               ('Category', {'fields':['category']}),
               ('Tags', {'fields':['tags',],'classes': ['collapse']}),
-              ('Blog', {'fields':['title', 'author','content','content_html']}),
+              ('Blog', {'fields':['title', 'author','is_html','content','content_html']}),
          ]
     list_display = ('title', 'author', 'create_time', 'update_time', 'is_release')
     list_filter = ('create_time',)
