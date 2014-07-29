@@ -60,23 +60,23 @@ WSGI_APPLICATION = 'pcms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-# DATABASES = {
-# 'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'pcms',
-#         'USER': 'root',
-#         'PASSWORD': '980723',
-#         'HOST': '',  
-#         'PORT': '',  
-#     }
-# }
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pcms',
+        'USER': 'root',
+        'PASSWORD': '980723',
+        'HOST': '',  
+        'PORT': '',  
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -105,8 +105,9 @@ TEMPLATE_DIRS = (
 
 STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'static'),
-    ('img_user',os.path.join(BASE_DIR, 'media')),
-    ('img_sys',os.path.join(BASE_DIR, 'static/img')),
+#     ('img_user',os.path.join(BASE_DIR, 'media')),
+#     ('img_sys',os.path.join(BASE_DIR, 'static/img')),
+    ('img',os.path.join(BASE_DIR, 'static/img')),
     ('css',os.path.join(BASE_DIR, 'static/css')),
     ('js',os.path.join(BASE_DIR, 'static/js')),
     ('font',os.path.join(BASE_DIR, 'static/fonts')),

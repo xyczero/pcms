@@ -842,15 +842,15 @@ article footer .addthis iframe {
 }
 
 #sidebar .widget .archive-expanded {
-    background: url('../img_sys/switch_expanded.png') no-repeat scroll 7px 52% !important;
+    background: url(/static/img/switch_expanded.png) no-repeat scroll 7px 52% !important;
 }
 
 #sidebar .widget .archive-collapsed {
-    background: url('../img_sys/switch_collapsed.png') no-repeat scroll 7px 52% !important;
+    background: url(/static/img/switch_collapsed.png) no-repeat scroll 7px 52% !important;
 }
 
 #sidebar .widget .archive-item {
-    background: url('../img_sys/switch_item.png') no-repeat scroll 7px 52% !important;
+    background: url(/static/img/switch_item.png) no-repeat scroll 7px 52% !important;
     margin-left: 20px;
 }
 
@@ -1137,6 +1137,6 @@ p#back-to-top a span {
 }
 
 #back-to-top a:hover span {
-	background: transparent url(/static/img_sys/return_top.png) no-repeat
+	background: transparent url(/static/img/return_top.png) no-repeat
 		-25px -290px;
 }
