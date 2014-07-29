@@ -4,9 +4,13 @@
 *.pyc
 *.bak
 *.sqlite3
+*.conf
+*.ini
+uwsgi_params
 
 ##################
 #     folder     #
 ##################
+!.gitignore
 !/static/img/
 !/media/read.text
