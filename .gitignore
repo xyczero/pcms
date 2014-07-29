@@ -7,10 +7,11 @@
 *.conf
 *.ini
 uwsgi_params
+!.gitignore
+!/media/read.text
 
 ##################
 #     folder     #
 ##################
-!.gitignore
 !/static/img/
-!/media/read.text
+/media/
