@@ -131,6 +131,7 @@ a:hover {
 	text-align: center;
 	margin-right: 10px;
 	margin-bottom: 15px;
+	margin-top: -9px;
 	display: block;
 	/* background: #9dcedf; */
 	background-color: #FFF;
@@ -139,12 +140,20 @@ a:hover {
 	-moz-border-radius: 100px;
 	-webkit-border-radius: 100px;
 	padding: 26px 13px;
-	font-size: 2.6em;
 	/* border: 4pt solid #fff; */
-/* 	-moz-box-shadow: 0 0px 3px #b7b7b7;
+	/*-moz-box-shadow: 0 0px 3px #b7b7b7;
 	-webkit-box-shadow: 0 0px 3px #b7b7b7;
 	box-shadow: 0 0px 3px #b7b7b7; */
 	/* border-right: 1px solid #777; */
+}
+
+#wrapper .post-date .post-month{
+	margin-bottom:4px;
+	font-size: 2.6em;
+}
+
+#wrapper .post-date .post-day{
+	font-size: 1.9em;
 }
 
 #wrapper .about {
@@ -306,7 +315,7 @@ article .link .title a:after {
 }
 
 article .post-content {
-	padding: 13px 20px 5px 77px;
+	padding: 13px 20px 5px 80px;
 	margin-bottom: 50px;
 	position: relative;
 }
@@ -406,9 +415,8 @@ article header .icon:before {
 article header .entry-info {
 	border-bottom: 1px dotted #999;
 	color: #999;
-	margin-left: 3px;
 	margin-top: 5px;
-	padding: 0px 15px 10px 0px;
+	padding: 0px 15px 8px 0px;
 	font-size: 12px;
 }
 
@@ -421,8 +429,9 @@ article header time {
 }
 
 article header .title {
-	margin: 0 0 5px 3px;
+	margin: 0 0 5px 0;
 	font-weight: bold;
+	padding-bottom: 3px;
 }
 
 article header .title a {
@@ -442,7 +451,8 @@ article .entry {
 article .entry-mycustom {
 	text-align: justify;
 	line-height: 1.6;
-	margin-top: 7px;
+	margin-top: 8px;
+	margin-bottom: 20px;
 }
 
 article .entry-readmore {
@@ -679,7 +689,8 @@ article footer .addthis iframe {
 	/* font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif; */
 	font-family: "Microsoft YaHei" !important;
 	text-shadow: 0 0 1px #fff;
-	margin-bottom: 50px;
+	margin-top:-10px;
+	margin-bottom: 27px;
 	text-align: center;
 }
 
@@ -754,13 +765,13 @@ article footer .addthis iframe {
 
 .archive article .post-time .day{
 	color: #999;
-	font-size: 1.7em;
+	font-size: 1.6em;
 }
 
 .archive article .post-time .hour{
 	color: #999;
 	font-size: 0.9em;
-	padding-left: 8px;
+	padding-left: 7px;
 }
 
 .archive article header .title{
@@ -948,6 +959,7 @@ article footer .addthis iframe {
 	color: #999;
 	font: 0.9em Microsoft YaHei" !important;
 	/* text-shadow: 0 0 1px #fff; */
+	margin-top:26px;
 }
 
 #footer .container-footer{

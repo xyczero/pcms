@@ -13,7 +13,7 @@ def index(request, ct_name):
         blog_list = Blog.objects.filter(is_release=True).order_by('-create_time')
     else:
         page_num = 5
-        is_ct = True;
+        is_ct = True
         blog_list = Blog.objects.filter(category__name=ct_name, is_release=True).order_by('-create_time')
         if not blog_list:
             tag=Tag.objects.filter(name=ct_name)
