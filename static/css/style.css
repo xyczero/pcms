@@ -280,6 +280,7 @@ article #none{
 	display:block;
 	text-align:center;
 	margin-top:34px;
+	margin-bottom:15px;
 	height: 59px;
 	font-size: 1.4em;
 	color: #777;
@@ -318,7 +319,7 @@ article .link .title a:after {
 }
 
 article .post-content {
-	padding: 13px 20px 5px 80px;
+	padding: 13px 45px 5px 80px;
 	margin-bottom: 50px;
 	position: relative;
 }

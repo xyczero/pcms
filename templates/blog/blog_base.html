@@ -43,9 +43,13 @@
 
 {% block aside %}
 	<div class="search">
-  		<form action="//google.com/search" method="get" accept-charset="utf-8">
-    		<input type="search" name="q" results="0" placeholder="搜索">
-    		<input type="hidden" name="q" value="site:blog.acgtyrant.com">
+  		<form action="http://www.baidu.com/baidu" method="get" target="_blank" accept-charset="utf-8">
+			<input name=tn type=hidden value=baidu>
+			<input name=tn type=hidden value="bds">
+			<input name=cl type=hidden value="3">
+			<input name=ct type=hidden value="2097152">
+			<input name=si type=hidden value="www.liangfeizc.com">
+			<input type=text name=word size=30 placeholder="搜索">
 		</form>
 	</div>
 	
@@ -126,9 +130,7 @@
 	{% block weibo_link %}
 		<div class="widget tag">
   			<h3 class="title">我的微博</h3>
-  			<ul class=".entry">
-    			<iframe width="100%" height="450" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=450&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=3176428527&verifier=943cbf46&dpc=1"></iframe>
-    		</ul>
+    		<iframe width="100%" height="450" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=450&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=3176428527&verifier=943cbf46&dpc=1"></iframe>
 		</div>
 	{% endblock %}
 	
