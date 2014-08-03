@@ -26,7 +26,7 @@
       					<br>更新于：{{blog.update_time|date:"Y-m-d h:m"}}
 					</div>
 				</header>
-        		<div class="entry-mycustom"><span id={{blog.id}}>{% autoescape off %}{{ blog.content_html}}{% endautoescape %}</span></div>
+        		<div class="entry-mycustom"><span id={{blog.id}}>{{ blog.content_html|safe}}</span></div>
     		</div>   
 		</article>
 {% endblock %}

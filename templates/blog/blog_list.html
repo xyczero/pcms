@@ -25,15 +25,19 @@
     			<header>
       				<h1 class="title"><a href="{% url 'blog:article' blog.id %}">{{ blog.title }}</a></h1>
       				<div class="entry-info">
-      					   分类：
-      						 {% if blog.category %}
-      						 	<a href="{% url 'blog:category' blog.category.name %}" title="查看包含{{blog.category.name}}的全部文章" >&nbsp{{blog.category.name}}</a>
+      					   分类 :
+      					   	 {% if blog.category %}
+      						 	<a href="{% url 'blog:category' blog.category.name %}" title="查看包含{{blog.category.name}}的全部文章" >{{blog.category.name}}</a>
       						 {% endif %}
-      					| 标签:
+      					| 标签 :
       						 {% for tag in blog.tags.all %}
-      							<a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag" >&nbsp{{tag.name}}</a>
+      						 	{% if forloop.first %}
+      								<a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag" >{{tag.name}}</a>
+      							{% else %}
+      								<a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag" >&nbsp{{tag.name}}</a>
+      							{% endif %}
       						 {% endfor %}
-      					| 作者：兜兜夓
+      					| 作者:兜兜夓
       					<br>更新于：{{blog.update_time|date:"Y-m-d h:m"}}
 					</div>
 				</header>
@@ -65,6 +69,10 @@
 		{% endif %}
 		<div class="clearfix"></div>
 	</nav>
-	
+	{% if not blogs %}
+		<article class="post">
+			<span id="none">暂无文章</span>
+		</article>
+	{% endif %}	
 {% endblock %}
 
