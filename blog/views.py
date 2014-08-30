@@ -16,10 +16,10 @@ def index(request, ct_name):
         is_ct = True
         blog_list = Blog.objects.filter(category__name=ct_name, is_release=True).order_by('-create_time')
         if not blog_list:
-            tag=Tag.objects.filter(name=ct_name)
+            tag=Tag.objects.get(name=ct_name)
             if tag :
-                tag[0].clicks=int(tag.clicks)+1
-                tag[0].save()
+                tag.clicks=int(tag.clicks)+1
+                tag.save()
             blog_list = Blog.objects.filter(tags__name=ct_name, is_release=True).order_by('-create_time')
             
     blogs = blog_paginator(request, blog_list, page_num)    
