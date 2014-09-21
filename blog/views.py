@@ -15,7 +15,7 @@ def index(request, ct_name):
         page_num = 5
         is_ct = True
         blog_list = Blog.objects.filter(category__name=ct_name, is_release=True).order_by('-create_time')
-        if not blog_list:
+        if not blog_list and not Category.objects.filter(name=ct_name):
             tag=Tag.objects.get(name=ct_name)
             if tag :
                 tag.clicks=int(tag.clicks)+1
