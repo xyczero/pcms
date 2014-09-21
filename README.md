@@ -1,13 +1,13 @@
-
-##pcms
+PCMS
 --- ---
-###Introduction
 
+Introduction
 --- ---
 A personal content management system is baesd on Django and Bootstrap which is showing in form of blog
 
-###FUNCTION
+FUNCTION
 --- ---
+
 - Tag
 - Category
 - Archive
@@ -15,13 +15,15 @@ A personal content management system is baesd on Django and Bootstrap which is s
 - Support Markdown  and Html format to write blogs
 
 
-###TODO
+TODO
 --- ---
+
 - Site Search (not baidu site search)
 - Extract Summary
 - Set up regular script automatically backup the database with MongoDB
 - Optimized code£¬such as using lambda expression
 
-###Website Examples
+Website Examples
 --- ----
-[XycZero's Blog](www.xyczero.com)
+
+- [XycZero's Blog](www.xyczero.com)
