@@ -13,7 +13,7 @@
     				<header>
     					<div class="post-time">
       						<time class="day">{{ blog.create_time|date:"d" }}日</time>
-      						<time class="hour">{{ blog.create_time|date:"h:m" }}</time>
+      						<time class="hour">{{ blog.create_time|date:"H:i" }}</time>
       					</div>	
       					<div class="post-content">
       						<h2 class="title"><a href="{% url 'blog:article' blog.id %}">{{ blog.title }}</a></h2>

@@ -23,7 +23,7 @@
       							<a href="{% url 'blog:tag' tag.name %}" title="查看包含{{tag.name}}的全部文章" rel="tag" >&nbsp{{tag.name}}</a>
       						 {% endfor %}
       					| 作者：兜兜夏 
-      					<br>更新于：{{blog.update_time|date:"Y-m-d h:m"}}
+      					<br>更新于：{{blog.update_time|date:"Y-m-d H:i"}}
 					</div>
 				</header>
         		<div class="entry-mycustom"><span id={{blog.id}}>{{ blog.content_html|safe}}</span></div>
