@@ -1,12 +1,12 @@
 PCMS
---- ---
+========
 
 Introduction
---- ---
+-------------
 A personal content management system is baesd on Django and Bootstrap which is showing in form of blog
 
 FUNCTION
---- ---
+-------------
 
 - Tag
 - Category
@@ -16,7 +16,7 @@ FUNCTION
 
 
 TODO
---- ---
+-------------
 
 - Site Search (not baidu site search)
 - Extract Summary
@@ -24,6 +24,6 @@ TODO
 - Optimized code£¬such as using lambda expression
 
 Website Examples
---- ----
+-------------
 
 - [XycZero's Blog](www.xyczero.com)
