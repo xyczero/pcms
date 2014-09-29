@@ -48,7 +48,6 @@
 							 var re=/([^\.\s]\.\.\.[<|>])/;
 							$(".entry-mycustom > span").each(function(){
 								var content=$(this).html();
-								console.log(content)
 								if(re.test($(this).html())&&$(this).attr('id')=={{blog.id}}){
 									$(this).after("<div class='entry-readmore '><a href='{% url "blog:article" blog.id %}'> 阅读全文 →</a></div><footer><div class='clearfix'></div></footer>");
 								}
