@@ -853,14 +853,24 @@ article footer .addthis iframe {
 	text-decoration: none;
 }
 
+#sidebar .widget .entry a:hover {
+	color: #258fb8;
+}
+
+#sidebar .widget .entry .aboutme a{
+	color: #258fb8;
+	padding: 1px 3px 1px 3px;
+
+}
+
+#sidebar .widget .entry .aboutme a:hover {
+	text-decoration: underline;
+}
+
 #sidebar .widget .entry .archive-collapsed-a{
 	color: #777;
 	padding: 0 3px 0 15px;
 	text-decoration: none;
-}
-
-#sidebar .widget .entry a:hover {
-	color: #258fb8;
 }
 
 #sidebar .widget .archive-expanded {
