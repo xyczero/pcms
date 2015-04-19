@@ -444,6 +444,10 @@ article .entry-mycustom {
 	margin-bottom: 20px;
 }
 
+article .entry-mycustom img {
+	max-width: 100%;
+}
+
 article .entry-readmore {
 	margin-top:17px;
 	margin-right:85%;
