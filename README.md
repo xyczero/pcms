@@ -28,4 +28,4 @@ TODO
 Website Examples
 -------------
 
-- [XycZero's Blog](www.xyczero.com)
+- [XycZero's Blog](http://www.xyczero.com)
