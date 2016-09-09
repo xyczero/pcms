@@ -65,7 +65,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pcms',
         'USER': 'root',
-        'PASSWORD': '980723',
+        'PASSWORD': '123456',
         'HOST': '',  
         'PORT': '',  
     }
@@ -110,5 +110,5 @@ STATICFILES_DIRS = (
     ('img',os.path.join(BASE_DIR, 'static/img')),
     ('css',os.path.join(BASE_DIR, 'static/css')),
     ('js',os.path.join(BASE_DIR, 'static/js')),
-    ('font',os.path.join(BASE_DIR, 'static/fonts')),
+    ('font',os.path.join(BASE_DIR, 'static/font')),
 )
